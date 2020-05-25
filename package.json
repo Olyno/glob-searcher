@@ -1,0 +1,52 @@
+{
+  "name": "glob-searcher",
+  "version": "0.1.0",
+  "description": "Find your files using globs!",
+  "main": "bin/index",
+  "scripts": {
+    "build": "tsc",
+    "start": "node bin",
+    "postinstall": "npm run build",
+    "prepublish": "npm run build"
+  },
+  "bin": {
+    "glob-searcher": "./bin/index.js",
+    "gs": "./bin/index.js"
+  },
+  "preferGlobal": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olyno/glob-searcher.git"
+  },
+  "author": "Olyno",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Olyno/glob-searcher/issues"
+  },
+  "homepage": "https://github.com/Olyno/glob-searcher#readme",
+  "keywords": [
+    "glob",
+    "search",
+    "files",
+    "fast"
+  ],
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@types/micromatch": "^4.0.1",
+    "@types/prompts": "^2.0.8",
+    "typescript": "^3.9.3"
+  },
+  "dependencies": {
+    "fdir": "^3.4.2",
+    "micromatch": "^4.0.2",
+    "open-file-explorer": "^1.0.2",
+    "prompts": "^2.3.2"
+  }
+}

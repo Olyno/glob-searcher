@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"outDir": "bin",
+		"strict": true,
+		"esModuleInterop": true,
+		"noImplicitAny": false,
+		"experimentalDecorators": true,
+		"lib": ["esnext", "es2015", "dom"],
+		"allowJs": false,
+		"sourceMap": true
+	},
+	"include": ["src"],
+	"exclude": [
+		"node_modules",
+		"cli"
+	]
+}
