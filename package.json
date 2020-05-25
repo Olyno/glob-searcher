@@ -6,7 +6,6 @@
   "scripts": {
     "build": "tsc",
     "start": "node bin",
-    "postinstall": "npm run build",
     "prepublish": "npm run build"
   },
   "bin": {
@@ -34,7 +33,7 @@
     "fast"
   ],
   "files": [
-    "src",
+    "bin",
     "README.md",
     "LICENSE"
   ],
