@@ -7,7 +7,7 @@ A real CLI to search folders and files using globs patterns.
 ## Install
 
 ```bash
-npm i -g glob-searcher # or yarn add -g glob-searcher
+npm i -g glob-searcher # or yarn global add glob-searcher
 ```
 
 ## Usage
