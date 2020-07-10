@@ -2,14 +2,18 @@
 
 import fdir from 'fdir';
 import { isMatch as globMatch } from 'micromatch';
-import prompts from 'prompts';
+import prompts, { Choice } from 'prompts';
 import path from 'path';
 import fs from 'fs';
 import openDir from 'open-file-explorer';
 import { exec } from 'child_process';
+import ora from 'ora';
 
 const args = process.argv.slice(2);
 const basePathRegex = new RegExp(process.cwd().replace(/\\/g, '\\\\') + '\\\\', 'g');
+
+let time = 0;
+const spinner = ora(time.toString()).start();
 
 new fdir()
     .withErrors()
@@ -21,6 +25,14 @@ new fdir()
         const filesList = (files as string[])
             .map(p => path.normalize(p).replace(basePathRegex, ''))
         if (args.length === 0) {
+            const choices: Choice[] = [];
+            for (const file of filesList) {
+                choices.push({
+                    title: file,
+                    value: file
+                })
+            }
+            spinner.stop();
             return prompts({
                 type: 'autocomplete',
                 name: 'found',
@@ -31,15 +43,13 @@ new fdir()
                     }
                     resolve(choices);
                 }),
-                choices: filesList.map(file => {
-                    return {
-                        title: file,
-                        value: file
-                    }
-                })
+                choices
+            })
+            .catch(err => {
+                throw err;
             })
         } else {
-            console.log(filesList.filter(p => globMatch(p, args[0])).join('\n'))
+            spinner.stop();
         }
     })
     .then(value => {
@@ -55,4 +65,7 @@ new fdir()
                 });
             }
         }
+    })
+    .catch(err => {
+        throw err;
     })
